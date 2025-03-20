@@ -1,7 +1,15 @@
+using Microsoft.EntityFrameworkCore;
+using prueba1.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<ClientesDbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("Conn"));
+});
+
 
 var app = builder.Build();
 
